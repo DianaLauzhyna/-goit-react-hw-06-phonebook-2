@@ -1,18 +1,21 @@
-import Section from './Section/Section';
 import Form from './Form/Form';
 import Contacts from './Contacts/Contacts';
+import {SectionMain, SectionHeader} from './Section/Section';
 import Filter from './Filter/Filter';
+
+import { Wrapper } from './App.styled';
+
 
 function App() {
   return (
-    <>
-      <h1>Phonebook</h1>
+    <Wrapper>
+   <SectionMain title="PhoneBook">
       <Form />
-      <Section title="Contacts">
+      </SectionMain>
+      <SectionHeader title="Contacts"/>
         <Filter />
         <Contacts />
-      </Section>
-    </>
+    </Wrapper>
   );
 }
 

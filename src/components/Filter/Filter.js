@@ -1,20 +1,21 @@
-import s from './Filter.module.css';
 import { useDispatch } from 'react-redux';
-import { filterContacts } from 'redux/phoneBook';
+
+import { filterContacts } from 'redux/contactsSlice';
+
+import { Label, Input, Span } from './Filter.styled';
 
 const Filter = () => {
   const dispatch = useDispatch();
 
   return (
-    <label className={s.label}>
-      Find contacts by name
-      <input
-        className={s.input}
+    <Label >
+      <Span>Find contacts by name</Span>
+      <Input
         type="text"
         name="filter"
         onChange={e => dispatch(filterContacts(e.target.value.toLowerCase()))}
       />
-    </label>
+   </Label>
   );
 };
 

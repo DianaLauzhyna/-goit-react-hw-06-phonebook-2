@@ -1,6 +1,8 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { deleteContact } from 'redux/phoneBook';
-import s from './Contacts.module.css';
+
+import { deleteContact } from 'redux/contactsSlice';
+
+import { ButtonDelete, List, ListItem, ContactText } from './ContactList.styled';
 
 const Contacts = () => {
   const contacts = useSelector(state => state.phoneBook.items);
@@ -8,22 +10,20 @@ const Contacts = () => {
   const dispatch = useDispatch();
 
   return (
-    <ul className={s.list}>
+    <List>
       {contacts
         .filter(el => el.name.toLowerCase().includes(filter))
         .map(({ id, number, name }) => (
-          <li className={s.item} key={id}>
-            {name}: {number}
-            <button
-              className={s.deleteBtn}
-              type="button"
+          <ListItem  key={id}>
+            <ContactText>{name}: {number}</ContactText>
+            <ButtonDelete
               onClick={() => dispatch(deleteContact({ id }))}
             >
               Delete
-            </button>
-          </li>
+            </ButtonDelete>
+          </ListItem>
         ))}
-    </ul>
+   </List>
   );
 };
 

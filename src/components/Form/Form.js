@@ -1,7 +1,10 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addContact } from 'redux/phoneBook';
-import s from './Form.module.css';
+
+import { addContact } from 'redux/contactsSlice';
+
+import { Button, FormInput } from './Form.styled';
+import {Input, Span, Label} from '../Filter/Filter.styled';
 
 function Form() {
   const dispatch = useDispatch();
@@ -35,11 +38,10 @@ function Form() {
   };
 
   return (
-    <form className={s.form} onSubmit={onSubmit}>
-      <label className={s.label}>
-        Name
-        <input
-          className={s.input}
+    <FormInput   onSubmit={onSubmit}>
+      <Label>
+      <Span>Name</Span>
+        <Input
           type="text"
           value={name}
           name="name"
@@ -48,11 +50,10 @@ function Form() {
           required
           onChange={onChange}
         />
-      </label>
-      <label className={s.label}>
-        Number
-        <input
-          className={s.input}
+      </Label>
+      <Label >
+      <Span>Number</Span>
+        <Input
           value={number}
           onChange={onChange}
           type="tel"
@@ -61,11 +62,11 @@ function Form() {
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
         />
-      </label>
-      <button className={s.submit} type="submit">
+      </Label>
+      <Button  type="submit">
         Add contact
-      </button>
-    </form>
+      </Button>
+    </FormInput >
   );
 }
 
